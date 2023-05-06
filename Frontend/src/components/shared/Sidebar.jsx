@@ -1,4 +1,3 @@
-import React from "react";
 import {
   RiHome6Line,
   RiMailLine,
@@ -8,7 +7,7 @@ import {
 } from "react-icons/ri";
 
 const Sidebar = (props) => {
-  const { showMenu } = props;
+  const { showMenu, showSelectHome, showSelectAdmin, showSelectLogin } = props;
 
   return (
     <div
@@ -25,27 +24,60 @@ const Sidebar = (props) => {
               alt="Tangas SA"
             />
           </li>
-          <li className="bg-[#262837] p-4 rounded-tl-xl rounded-bl-xl">
+          <li 
+          className={`
+          ${
+            showSelectHome
+              ? "bg-[#262837] p-4 rounded-tl-xl rounded-bl-xl group transition-colors"
+              : "hover:bg-[#262837] p-4 rounded-tl-xl rounded-bl-xl group transition-colors"
+          }`}>
             <a
               href="/"
-              className="bg-[#ec7c6a] p-4 flex justify-center rounded-xl text-white"
+              className={`group-hover:bg-[#ec7c6a] p-4 flex justify-center rounded-xl text-[#ec7c6a] group-hover:text-white transition-colors 
+              ${
+                showSelectHome
+                  ? "bg-[#ec7c6a] p-4 flex justify-center rounded-xl text-[#ffffff] group:text-white transition-colors"
+                  : "group-hover:bg-[#ec7c6a] p-4 flex justify-center rounded-xl text-[#ec7c6a] group-hover:text-white transition-colors"
+              }`}
             >
               <RiHome6Line className="text-2xl" />
             </a>
           </li>
 
-          <li className="hover:bg-[#262837] p-4 rounded-tl-xl rounded-bl-xl group transition-colors">
+          <li
+            className={`
+              ${
+                showSelectAdmin
+                  ? "bg-[#262837] p-4 rounded-tl-xl rounded-bl-xl group transition-colors"
+                  : "hover:bg-[#262837] p-4 rounded-tl-xl rounded-bl-xl group transition-colors"
+              }`}
+          >
             <a
               href="/admin"
-              className="group-hover:bg-[#ec7c6a] p-4 flex justify-center rounded-xl text-[#ec7c6a] group-hover:text-white transition-colors"
+              className={`group-hover:bg-[#ec7c6a] p-4 flex justify-center rounded-xl text-[#ec7c6a] group-hover:text-white transition-colors 
+              ${
+                showSelectAdmin
+                  ? "bg-[#ec7c6a] p-4 flex justify-center rounded-xl text-[#ffffff] group:text-white transition-colors"
+                  : "hover:bg-[#262837] p-4 rounded-tl-xl rounded-bl-xl group transition-colors"
+              }`}
             >
               <RiSettings4Line className="text-2xl" />
             </a>
           </li>
-          <li className="hover:bg-[#262837] p-4 rounded-tl-xl rounded-bl-xl group transition-colors">
+          <li className={`
+              ${
+                showSelectLogin
+                  ? "bg-[#262837] p-4 rounded-tl-xl rounded-bl-xl group transition-colors"
+                  : "hover:bg-[#262837] p-4 rounded-tl-xl rounded-bl-xl group transition-colors"
+              }`}>
             <a
               href="/login"
-              className="group-hover:bg-[#ec7c6a] p-4 flex justify-center rounded-xl text-[#ec7c6a] group-hover:text-white transition-colors"
+              className={`group-hover:bg-[#ec7c6a] p-4 flex justify-center rounded-xl text-[#ec7c6a] group-hover:text-white transition-colors 
+              ${
+                showSelectLogin
+                  ? "bg-[#ec7c6a] p-4 flex justify-center rounded-xl text-[#ffffff] group:text-white transition-colors"
+                  : "hover:bg-[#262837] p-4 rounded-tl-xl rounded-bl-xl group transition-colors"
+              }`}
             >
               <RiAdminLine className="text-2xl" />
             </a>

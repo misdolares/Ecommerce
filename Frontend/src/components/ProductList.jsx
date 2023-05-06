@@ -16,7 +16,9 @@ import { ProductAdmin } from "./ProductAdmin";
 export const ProductList = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showOrder, setShowOrder] = useState(false);
+  const [showSelectAdmin] = useState(true);
 
+  
   const toggleMenu = () => {
     setShowMenu(!showMenu);
     setShowOrder(false);
@@ -29,7 +31,7 @@ export const ProductList = () => {
 
   return (
     <div className="bg-[#262837] w-full min-h-screen">
-      <Sidebar showMenu={showMenu} />
+      <Sidebar showMenu={showMenu} showSelectAdmin={showSelectAdmin}/>
       <Graficos showOrder={showOrder} setShowOrder={setShowOrder} />
       {/* Menu movil */}
       <nav className="bg-[#1F1D2B] lg:hidden fixed w-full bottom-0 left-0 text-3xl text-gray-400 py-2 px-8 flex items-center justify-between rounded-tl-xl rounded-tr-xl">

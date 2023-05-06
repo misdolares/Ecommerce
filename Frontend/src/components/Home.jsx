@@ -20,6 +20,8 @@ export const Home = () => {
   const [countProducts, setCountProducts] = useState(0);
   const [showMenu, setShowMenu] = useState(false);
   const [showOrder, setShowOrder] = useState(false);
+  const [showSelectHome] = useState(true);
+
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -33,7 +35,7 @@ export const Home = () => {
 
   return (
     <div className="bg-[#262837] w-full min-h-screen">
-      <Sidebar showMenu={showMenu} />
+      <Sidebar showMenu={showMenu} showSelectHome={showSelectHome}/>
       <Car
         showOrder={showOrder}
         setShowOrder={setShowOrder}
