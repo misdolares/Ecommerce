@@ -28,6 +28,7 @@ export const saveProduct = (req, res) => {
   if (req.files === null)
     return res.status(400).json({ msg: "Ningún archivo cargado" });
   const name = req.body.title;
+  const category = req.body.category;
   const price = req.body.price;
   const quantity = req.body.quantity;
   const file = req.files.file;
@@ -47,6 +48,7 @@ export const saveProduct = (req, res) => {
     try {
       await Product.create({
         name: name,
+        category: category,
         price: price,
         quantity: quantity,
         image: fileName,
@@ -92,6 +94,7 @@ export const updateProduct = async (req, res) => {
     });
   }
   const name = req.body.title;
+  const category = req.body.category;
   const price = req.body.price;
   const quantity = req.body.quantity;
   const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
@@ -100,6 +103,7 @@ export const updateProduct = async (req, res) => {
     await Product.update(
       {
         name: name,
+        category: category,
         price: price,
         quantity: quantity,
         image: fileName,
@@ -126,8 +130,8 @@ export const deleteProduct = async (req, res) => {
   if (!product) return res.status(404).json({ msg: "Datos no encontrados" });
 
   try {
-    const filepath = `./public/images/${product.image}`;
-    fs.unlinkSync(filepath);
+   // const filepath = `./public/images/${product.image}`;
+   // fs.unlinkSync(filepath);
     await Product.destroy({
       where: {
         id: req.params.id,

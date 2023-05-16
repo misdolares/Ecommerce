@@ -1,10 +1,10 @@
 import React from "react";
 import { RiSearch2Line } from "react-icons/ri";
 
-const Header = () => {
+export const HeaderAddProduct = () => {
   return (
     <header>
-      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-6">
+      <div className="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-16">
         <div>
           <h1 className="text-2xl text-gray-300">Tangas SA</h1>
           <p className="text-gray-500">Trabajo Practico Ecommerce</p>
@@ -22,24 +22,17 @@ const Header = () => {
       </div>
 
       <nav className="text-gray-300 flex items-center justify-between md:justify-start md:gap-8 border-b mb-6">
-        <a
-          href="#"
+        <p
+      
           className="relative py-2 pr-4 before:w-1/2 before:h-[2px] before:absolute before:bg-[#ec7c6a] before:left-0 before:rounded-full before:-bottom-[1px] text-[#ec7c6a]"
         >
-          Bombachas
-        </a>
-        <a href="#" className="py-2 pr-4">
-          Culote
-        </a>
-        <a href="#" className="py-2 pr-4">
-          Less Regulable
-        </a>
-        <a href="#" className="py-2">
-          Vedetina
-        </a>
+          Agregar Productos
+        </p>
+    
+   
       </nav>
     </header>
   );
 };
 
-export default Header;
+export default HeaderAddProduct;

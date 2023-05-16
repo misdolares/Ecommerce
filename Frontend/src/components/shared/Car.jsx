@@ -50,36 +50,37 @@ export const Car = ({
             {countProducts}
           </span>
           <h1 className="text-2xl my-1 p-4 rounded-xl mb-4 col-span-4 flex items-center gap-2">
-            Pedido Nº 01
+          Shopping Cart
           </h1>
         </div>
 
         <div className="flex items-center gap-4 flex-wrap mb-8">
           <Link
             to="/login"
-            className="bg-[#ec7c6a] text-white py-2 px-4 rounded-xl"
+            className="text-[#ec7c6a] hover:bg-[#ec7c6a] hover:text-white transition-colors py-2 px-4 rounded-xl border border-gray-500"
           >
             Login
           </Link>
 
-          <button className="text-[#ec7c6a] py-2 px-4 rounded-xl border border-gray-500">
+          <Link
+            to="/registro"
+            className="text-[#ec7c6a] hover:bg-[#ec7c6a] hover:text-white transition-colors py-2 px-4 rounded-xl border border-gray-500"
+          >
             Registrarse
-          </button>
-          <button className="text-[#ec7c6a] py-2 px-4 rounded-xl border border-gray-500">
+          </Link>
+          <Link
+            to="/contacto"
+            className="text-[#ec7c6a] hover:bg-[#ec7c6a] hover:text-white transition-colors py-2 px-4 rounded-xl border border-gray-500"
+          >
             Contacto
-          </button>
+          </Link>
         </div>
 
         <div>
           {allProducts.length ? (
             <div className="">
-              <div className="p-4 rounded-xl mb-4 col-span-4 flex items-center gap-12">
-                <span>Producto</span>
-                <span>Cantidad</span>
-                <span>Precio</span>
-              </div>
-
-              <div className="h-[432px] md:h-[288px] lg:h-[268px] overflow-scroll">
+     
+              <div className="h-[432px] md:h-[720px] lg:h-[510px] overflow-scroll">
                 {allProducts.map((product) => (
                   <div className="" key={product.id}>
                     <div className="bg-[#b91443] p-4 rounded-xl mb-4 ">
@@ -92,20 +93,19 @@ export const Car = ({
                           />
                           <div>
                             <h5 className="text-sm">{product.name}</h5>
-                            <p className="text-xs text-gray-500">
-                              ID {product.id}
-                            </p>
+                        
+                           
                           </div>
                         </div>
                         {/* Cantidad */}
                         <div>
-                          <span className="items-center">
+                          <span className="bg-[#1F1D2B] py-2 px-4 rounded-lg outline-none">
                             {product.quantity}
                           </span>
                         </div>
                         {/* Precio */}
                         <div>
-                          <span>$ {product.price}</span>
+                          <span>{product.price}</span>
                         </div>
                       </div>
 
@@ -131,7 +131,7 @@ export const Car = ({
                     </div>
 
                     <div className="bg-[#262837] absolute w-full bottom-0 left-0 p-4">
-                      <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center justify-between mb-4 grid-cols-6">
                         <span className="text-gray-400">Total</span>
                         <span>$ {total}</span>
                       </div>

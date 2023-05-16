@@ -7,6 +7,7 @@ const Product = db.define(
   "product",
   {
     name: DataTypes.STRING,
+    category: DataTypes.STRING,
     price: DataTypes.DECIMAL(10, 2),
     quantity: DataTypes.INTEGER(11),
     image: DataTypes.STRING,

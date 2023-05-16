@@ -9,8 +9,7 @@ import {
 } from "react-icons/ri";
 
 import Sidebar from "../components/shared/Sidebar";
-import Header from "../components/shared/Header";
-import { Card } from "../components/shared/Card";
+import { SearchComponent } from "../components/shared/SearchComponent";
 import ForgetCard from "../components/ForgetCard";
 
 export const MenuForget = () => {
@@ -49,25 +48,16 @@ export const MenuForget = () => {
       </nav>
       <main className="lg:pl-32 lg:pr-96 pb-20">
         <div className="md:p-8 p-4">
-          <Header />
+          <SearchComponent
+            allProducts={allProducts}
+            setAllProducts={setAllProducts}
+            total={total}
+            setTotal={setTotal}
+            countProducts={countProducts}
+            setCountProducts={setCountProducts}
+          />
 
-          <div className="flex items-center justify-between mb-16">
-            <h2 className="text-xl text-gray-300"></h2>
-            <button className="flex items-center gap-4 text-gray-300 bg-[#1F1D2B] py-2 px-4 rounded-lg">
-              <RiArrowDownSLine /> Ordenar Por
-            </button>
-          </div>
-
-          <div className="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-16">
-            <Card
-              allProducts={allProducts}
-              setAllProducts={setAllProducts}
-              total={total}
-              setTotal={setTotal}
-              countProducts={countProducts}
-              setCountProducts={setCountProducts}
-            />
-          </div>
+          <div className="p-8 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-16"></div>
         </div>
       </main>
     </div>

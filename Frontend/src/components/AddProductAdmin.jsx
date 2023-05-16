@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-export const ProductAdmin = () => {
+export const AddProductAdmin = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -36,10 +36,11 @@ export const ProductAdmin = () => {
           />
           <p className="text-xl">{product.name}</p>
           <span className="text-gray-400">${product.price}</span>
+          <p className="text-gray-400">Categoria: {product.category}</p>
           <p className="text-green-600">En stock!</p>
           <br />
           <footer className="card-footer">
-            <Link to={`edit/${product.id}`} className="card-footer-item">
+            <Link to={`/admin/edit/${product.id}`} className="card-footer-item">
               Editar
             </Link>
             <a
@@ -57,3 +58,5 @@ export const ProductAdmin = () => {
     </>
   );
 };
+
+export default AddProductAdmin;

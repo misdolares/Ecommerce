@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import Select from "react-select";
 
-const EditProduct = () => {
+export const EditProduct = () => {
   const [title, setTitle] = useState("");
   const [file, setFile] = useState("");
   const [price, setPrice] = useState("");
+  const [category, setCategory] = useState("");
   const [quantity, setQuantity] = useState("");
   const [preview, setPreview] = useState("");
   const { id } = useParams();
@@ -19,6 +21,7 @@ const EditProduct = () => {
     const response = await axios.get(`http://localhost:5000/products/${id}`);
     setTitle(response.data.name);
     setPrice(response.data.price);
+    setCategory(response.data.category);
     setQuantity(response.data.quantity);
     setFile(response.data.image);
     setPreview(response.data.url);
@@ -36,6 +39,7 @@ const EditProduct = () => {
     formData.append("file", file);
     formData.append("title", title);
     formData.append("price", price);
+    formData.append("category", category);
     formData.append("quantity", quantity);
     try {
       await axios.patch(`http://localhost:5000/products/${id}`, formData, {
@@ -49,29 +53,67 @@ const EditProduct = () => {
     }
   };
 
+  const DBSuppliers2 = [
+    { id: "Cola Less", name: "Cola Less" },
+    { id: "Bombacha", name: "Bombacha" },
+    { id: "Conjunto", name: "Conjunto" },
+  ];
+
+  const handleSelectChange = (event) => {
+    console.log(event.value);
+    setCategory(event.value);
+  };
+
   return (
-    <div className="columns is-centered mt-5">
-      <div className="column is-half">
+    <div className="bg-[#1F1D2B] p-8 rounded-xl flex flex-col items-center gap-2 text-center text-gray-300">
+{preview ? (
+            <figure  className="w-40 h-40 object-cover -mt-20 shadow-2xl rounded-full">
+              <img src={preview} alt="Imagen de vista previa" />
+            </figure>
+          ) : (
+            <img
+            src=""
+            className="w-40 h-40 object-cover -mt-20 shadow-2xl rounded-full"
+          />
+          )}
+
+
         <form onSubmit={updateProduct}>
-          <div className="field">
-            <label className="label">Titulo</label>
-            <div className="control">
+        <div className="field py-2">
+        <label className="text-gray-600 py-2">Nombre del Producto</label>
+        <div className="text-gray-600 py-2">
               <input
                 type="text"
-                className="input"
+                className="w-full border border-gray-200 outline-none py-2 px-8 rounded-lg text-gray-400"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="Titulo"
+                placeholder="Nombre del Producto"
               />
             </div>
           </div>
 
+          <div className="field py-2">
+        <label className="text-gray-600 py-2">Categoria</label>
+        <div className="text-gray-600 py-2">
+        <Select
+        
+        options={DBSuppliers2.map((sup) => ({
+          
+          label: sup.name,
+          value: sup.id,
+          
+        }))}
+        onChange={handleSelectChange}
+      />
+            </div>
+          </div>
+
           <div className="field">
-            <label className="label">Precio</label>
-            <div className="control">
+          <label className="text-gray-600 py-2">Precio</label>
+          <div className="text-gray-600 py-2">
               <input
                 type="text"
-                className="input"
+                className="w-full border border-gray-200 outline-none py-2 px-8 rounded-lg text-gray-400"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
                 placeholder="Precio"
@@ -80,40 +122,30 @@ const EditProduct = () => {
           </div>
 
           <div className="field">
-            <label className="label">Imagen</label>
-            <div className="control">
+          <label className="text-gray-600 py-2">Imagen</label>
+          <div className="text-gray-600 py-2">
               <div className="file">
                 <label className="file-label">
                   <input
                     type="file"
-                    className="file-input"
+                    className="w-full border border-gray-200 outline-none py-2 px-8 rounded-lg text-gray-400"
                     onChange={loadImage}
                   />
-                  <span className="file-cta">
-                    <span className="file-label">Imagen...</span>
-                  </span>
+             
                 </label>
               </div>
             </div>
           </div>
 
-          {preview ? (
-            <figure className="image is-128x128">
-              <img src={preview} alt="Imagen de vista previa" />
-            </figure>
-          ) : (
-            ""
-          )}
-
           <div className="field">
             <div className="control">
               <button type="submit" className="button is-success">
-                Actualizar
+                Actualizar producto
               </button>
             </div>
           </div>
         </form>
-      </div>
+     
     </div>
   );
 };
